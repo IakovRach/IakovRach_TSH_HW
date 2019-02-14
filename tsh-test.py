@@ -1,5 +1,4 @@
 #Module to extract TSH scores of patients and diagnose them
-
 import pytest
 
 #laods text from file
@@ -8,10 +7,12 @@ def file_loader():
     data_all = file.read()
     return data_all
 
+
 #splits by line
 def line_splitter(data):
     data_lines = data.split('\n')
     return data_lines
+
 
 #extracts patient name
 def extract_names(data_lines):
@@ -20,6 +21,7 @@ def extract_names(data_lines):
         names.append(data_lines[4*i])
     return names
 
+
 #extracts patient age
 def extract_age(data_lines):
     age = []
@@ -27,12 +29,14 @@ def extract_age(data_lines):
         age.append(data_lines[4*i+1])
     return age
 
+
 #extracts patient's sex
 def extract_sex(data_lines):
     sex = []
     for i in range(int(len(data_lines)/4)-1):
         sex.append(data_lines[4*i+2])
     return sex
+
 
 #extracts patient's scores and converts to float
 def extract_scores(data_lines):
@@ -49,6 +53,7 @@ def extract_scores(data_lines):
         del score_nums[i][0]
     return score_nums
 
+
 #diagnoses patient and returns diagnosis
 def diagnose_tsh(scores, patient):
     if float(min(scores[patient])) < float(1.0):
@@ -57,6 +62,7 @@ def diagnose_tsh(scores, patient):
         return 'hypothyroidism'
     else:
         return 'normal thyroid function'
+
 
 #to run code
 if __name__ == '__main__':
