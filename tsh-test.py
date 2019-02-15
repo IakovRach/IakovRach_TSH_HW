@@ -1,6 +1,7 @@
 # Module to extract TSH scores of patients and diagnose them
 import pytest
 
+
 # loads text from file
 def file_loader():
     file = open('test_data.txt', 'r')
@@ -64,6 +65,19 @@ def diagnose_tsh(scores, patient):
         return 'normal thyroid function'
 
 
+# create dictionary
+def create_patient_dict(names, age, sex, scores):
+    patient_dict = {}
+    for i in range (0, len(names)):
+        patient_dict[i] = {'name': names[i],
+                                'age': age[i],
+                                'sex': sex[i],
+                                'scores': scores[i],
+                                'diagnosis': diagnose_tsh(scores, i)
+                                }
+    return patient_dict
+
+
 # to run code
 if __name__ == '__main__':
     tsh_all = file_loader()
@@ -73,4 +87,8 @@ if __name__ == '__main__':
     sex = extract_sex(tsh_lines)
     scores = extract_scores(tsh_lines)
     patient = input('Enter patient number: ')
-    print(diagnose_tsh(scores, int(patient)))
+    patient_dict = create_patient_dict(names, age, sex, scores)
+    print(patient_dict[int(patient)]['name'])
+    print(patient_dict[int(patient)]['age'])
+    print(patient_dict[int(patient)]['sex'])
+    print(patient_dict[int(patient)]['diagnosis'])
