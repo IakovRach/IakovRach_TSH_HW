@@ -127,11 +127,11 @@ def create_patient_dict(names, age, sex, scores):
     patient_dict = {}
     for i in range(0, len(names)):
         patient_dict[i] = {'name': names[i],
-                                'age': age[i],
+                            'age': age[i],
                                 'sex': sex[i],
                                 'scores': scores[i],
                                 'diagnosis': diagnose_tsh(scores, i)
-                                }
+                            }
     return patient_dict
 
 
@@ -150,6 +150,7 @@ def create_json_file(patient_dict):
     file = open(firstname+'-'+lastname, 'w')
     json.dump(patient_dict, file)
     file.close()
+
 
 def full_diagnosis(patient_number):
     """Runs the whole diagnosis and returns a json file with results.
@@ -173,6 +174,7 @@ def full_diagnosis(patient_number):
     for i in range(len(names)):
         create_json_file(patient_dict[i])
     return patient_dict[int(patient)]['diagnosis']
+
 
 # to run code
 if __name__ == '__main__':
