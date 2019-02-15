@@ -1,5 +1,6 @@
 # Module to extract TSH scores of patients and diagnose them
 import pytest
+import json
 
 
 # loads text from file
@@ -68,13 +69,13 @@ def diagnose_tsh(scores, patient):
 # create dictionary
 def create_patient_dict(names, age, sex, scores):
     patient_dict = {}
-    for i in range (0, len(names)):
+    for i in range(0, len(names)):
         patient_dict[i] = {'name': names[i],
-                            'age': age[i],
-                            'sex': sex[i],
-                            'scores': scores[i],
-                            'diagnosis': diagnose_tsh(scores, i)
-                            }
+                        'age': age[i],
+                        'sex': sex[i],
+                        'scores': scores[i],
+                        'diagnosis': diagnose_tsh(scores, i)
+                        }
     return patient_dict
 
 
