@@ -71,12 +71,22 @@ def create_patient_dict(names, age, sex, scores):
     patient_dict = {}
     for i in range(0, len(names)):
         patient_dict[i] = {'name': names[i],
-                        'age': age[i],
-                        'sex': sex[i],
-                        'scores': scores[i],
-                        'diagnosis': diagnose_tsh(scores, i)
-                        }
+                            'age': age[i],
+                            'sex': sex[i],
+                            'scores': scores[i],
+                            'diagnosis': diagnose_tsh(scores, i)
+                            }
     return patient_dict
+
+
+def create_json_file(patient_dict):
+    name = patient_dict['name']
+    name = name.split(' ')
+    firstname = name[0]
+    lastname = name[1]
+    file = open(firstname+'-'+lastname, 'w')
+    json.dump(patient_dict, file)
+    file.close()
 
 
 # to run code
@@ -93,3 +103,5 @@ if __name__ == '__main__':
     print(patient_dict[int(patient)]['age'])
     print(patient_dict[int(patient)]['sex'])
     print(patient_dict[int(patient)]['diagnosis'])
+    for i in range(len(names)):
+        create_json_file(patient_dict[i])
