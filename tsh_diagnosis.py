@@ -127,7 +127,7 @@ def create_patient_dict(names, age, sex, scores):
     patient_dict = {}
     for i in range(0, len(names)):
         patient_dict[i] = {'name': names[i], 'age': age[i],
-                            'sex': sex[i],
+                        'sex': sex[i],
                             'scores': scores[i],
                             'diagnosis': diagnose_tsh(scores, i)
                         }
